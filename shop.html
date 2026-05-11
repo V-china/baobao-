@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>微购商城 - 精选好物</title>
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+    <!-- 顶部 -->
+    <header class="shop-header">
+        <div class="shop-header-inner">
+            <div class="shop-logo">🛍️ 微购商城</div>
+            <div class="shop-search">
+                <input type="text" id="shopSearch" placeholder="搜索商品...">
+            </div>
+            <button class="cart-btn" id="cartBtn">
+                🛒 购物车 <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <div class="banner">
+        <div class="banner-content">
+            <h2>✨ 全场包包大促 ✨</h2>
+            <p>满199减30 · 满399减80 · 包邮到家</p>
+        </div>
+    </div>
+
+    <!-- 分类导航 -->
+    <nav class="category-nav">
+        <button class="cat-btn active" data-cat="all">全部</button>
+        <button class="cat-btn" data-cat="爆款">爆款</button>
+        <button class="cat-btn" data-cat="新品">新品</button>
+        <button class="cat-btn" data-cat="热销">热销</button>
+        <button class="cat-btn" data-cat="限时">限时特价</button>
+    </nav>
+
+    <!-- 商品列表 -->
+    <main class="shop-main">
+        <div class="shop-products-grid" id="shopProducts"></div>
+    </main>
+
+    <!-- 商品详情弹窗 -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content detail-content">
+            <button class="modal-close" id="closeDetail">✕</button>
+            <div class="detail-body" id="detailBody"></div>
+        </div>
+    </div>
+
+    <!-- 购物车弹窗 -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content cart-content">
+            <div class="modal-header">
+                <h3>🛒 我的购物车</h3>
+                <button class="modal-close" id="closeCart">✕</button>
+            </div>
+            <div class="cart-body" id="cartBody"></div>
+            <div class="cart-footer" id="cartFooter"></div>
+        </div>
+    </div>
+
+    <!-- 支付弹窗 -->
+    <div class="modal" id="payModal">
+        <div class="modal-content pay-content">
+            <div class="modal-header">
+                <h3>💰 微信支付</h3>
+                <button class="modal-close" id="closePay">✕</button>
+            </div>
+            <div class="pay-body">
+                <div class="pay-amount">
+                    应付金额：<span id="payAmount">¥0.00</span>
+                </div>
+                <div class="pay-qr-wrap" id="payQRWrap">
+                    <div class="qr-placeholder" id="qrPlaceholder">请先在管理端上传<br>微信收款码</div>
+                    <img alt="微信支付二维码" class="pay-qr" id="payQR" style="display:none">
+                </div>
+                <div class="pay-tip">📱 请使用微信扫码完成支付</div>
+                <button class="btn-paid" id="paidBtn">我已完成支付</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示 -->
+    <div class="toast" id="toast"></div>
+
+    <script src="shop.js"></script>
+</body>
+</html>
