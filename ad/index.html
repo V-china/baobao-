@@ -909,8 +909,13 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Bag catalog metadata - 每张图配品牌、款式、价格
 const CLIENT_SHOP_URL = 'https://v-china.github.io/baobao-/';
-// 走 jsDelivr CDN 加速图片（国内访问快得多）
-const IMG_CDN = 'https://cdn.jsdelivr.net/gh/V-china/baobao-@main/ad/';
+// 多 CDN 容灾：依次尝试，哪个通用哪个（国内访问更稳）
+const IMG_CDNS = [
+    'https://cdn.statically.io/gh/V-china/baobao-/main/ad/',
+    'https://gcore.jsdelivr.net/gh/V-china/baobao-@main/ad/',
+    'https://cdn.jsdelivr.net/gh/V-china/baobao-@main/ad/',
+    './'  // 最后退回相对路径（同源 GitHub Pages）
+];
 const BAG_CATALOG = [
     { brand: 'Chanel',        model: 'Classic Flap · Medium',  price: 690, retail: 8800 },
     { brand: 'Louis Vuitton', model: 'Neverfull MM',            price: 480, retail: 2100 },
@@ -954,21 +959,38 @@ const BAG_CATALOG = [
     { brand: 'Mulberry',      model: 'Lily',                     price: 410, retail: 950 }
 ];
 
-// Featured gallery loader: 顺序加载 gallery/01.jpg .. gallery/40.jpg
+// Featured gallery loader: 自动从多个 CDN 寻找最快的，加载 gallery/01.jpg .. gallery/40.jpg
+function probeImage(url, timeoutMs = 6000) {
+    return new Promise(r => {
+        const t = new Image();
+        let done = false;
+        const finish = (ok) => { if (!done) { done = true; r(ok); } };
+        t.onload = () => finish(true);
+        t.onerror = () => finish(false);
+        setTimeout(() => finish(false), timeoutMs);
+        t.src = url;
+    });
+}
+
 (async () => {
     const grid = document.getElementById('galleryGrid');
     const empty = document.getElementById('galleryEmpty');
+    // 先确定哪个 CDN 在用户网络下可用：探测 01.jpg
+    let activeCdn = null;
+    for (const cdn of IMG_CDNS) {
+        if (await probeImage(`${cdn}gallery/01.jpg`, 5000)) {
+            activeCdn = cdn;
+            console.log('[gallery] Using CDN:', cdn);
+            break;
+        }
+    }
+    if (!activeCdn) { console.warn('[gallery] No CDN reachable'); return; }
     const loaded = [];
     for (let i = 1; i <= 40; i++) {
         const num = String(i).padStart(2, '0');
         for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
-            const url = `${IMG_CDN}gallery/${num}.${ext}`;
-            const ok = await new Promise(r => {
-                const t = new Image();
-                t.onload = () => r(true);
-                t.onerror = () => r(false);
-                t.src = url;
-            });
+            const url = `${activeCdn}gallery/${num}.${ext}`;
+            const ok = await probeImage(url, 4000);
             if (ok) {
                 const meta = BAG_CATALOG[(i-1) % BAG_CATALOG.length];
                 loaded.push({ url, num, ...meta });
