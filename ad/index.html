@@ -907,8 +907,48 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ============================================================
+// 🔧 账号配置区：要改账号在这里改就行（找不到的留空字符串 ''）
+// ============================================================
+const MY_ACCOUNTS = {
+    instagram: 'miaomiaomiao4957',   // → https://instagram.com/miaomiaomiao4957
+    whatsapp:  '',                   // 例: '447712345678' (英国国码44+手机号，不带+和空格)
+    tiktok:    '',                   // 例: 'luxeandco'
+    email:     '',                   // 例: 'hello@luxeandco.com'
+    shop:      'https://v-china.github.io/baobao-/shop.html'
+};
+// ============================================================
+
+// 自动把账号绑到所有按钮上
+(function bindAccounts() {
+    const ig = MY_ACCOUNTS.instagram;
+    const wa = MY_ACCOUNTS.whatsapp;
+    const igLink  = document.getElementById('instagram-link');
+    const waLink  = document.getElementById('whatsapp-link');
+    const webLink = document.getElementById('website-link');
+    if (igLink) {
+        if (ig) {
+            igLink.href = `https://instagram.com/${ig}`;
+            igLink.style.display = '';
+        } else {
+            igLink.style.display = 'none';
+        }
+    }
+    if (waLink) {
+        if (wa) {
+            waLink.href = `https://wa.me/${wa}`;
+            waLink.style.display = '';
+        } else {
+            waLink.style.display = 'none';
+        }
+    }
+    if (webLink) {
+        webLink.href = MY_ACCOUNTS.shop;
+    }
+})();
+
 // Bag catalog metadata - 每张图配品牌、款式、价格
-const CLIENT_SHOP_URL = 'https://v-china.github.io/baobao-/shop.html';
+const CLIENT_SHOP_URL = MY_ACCOUNTS.shop;
 // 多 CDN 容灾：依次尝试，哪个通用哪个（国内访问更稳）
 const IMG_CDNS = [
     'https://cdn.statically.io/gh/V-china/baobao-/main/ad/',
