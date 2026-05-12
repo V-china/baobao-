@@ -975,7 +975,9 @@ function probeImage(url, timeoutMs = 6000) {
 (async () => {
     const grid = document.getElementById('galleryGrid');
     const empty = document.getElementById('galleryEmpty');
-    // 先确定哪个 CDN 在用户网络下可用：探测 01.jpg
+    const TOTAL = 24;  // 实际有的图片数（01.jpg .. 24.jpg）
+
+    // 1. 探测最快可用的 CDN
     let activeCdn = null;
     for (const cdn of IMG_CDNS) {
         if (await probeImage(`${cdn}gallery/01.jpg`, 5000)) {
@@ -985,28 +987,24 @@ function probeImage(url, timeoutMs = 6000) {
         }
     }
     if (!activeCdn) { console.warn('[gallery] No CDN reachable'); return; }
-    const loaded = [];
-    for (let i = 1; i <= 40; i++) {
-        const num = String(i).padStart(2, '0');
-        for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
-            const url = `${activeCdn}gallery/${num}.${ext}`;
-            const ok = await probeImage(url, 4000);
-            if (ok) {
-                const meta = BAG_CATALOG[(i-1) % BAG_CATALOG.length];
-                loaded.push({ url, num, ...meta });
-                break;
-            }
-        }
-    }
-    if (loaded.length === 0) return;
+
+    // 2. 预先生成 24 个占位卡片（按顺序），并行加载图片，到位即显示
     empty.remove();
-    for (const it of loaded) {
+    const slots = [];
+    for (let i = 1; i <= TOTAL; i++) {
+        const num = String(i).padStart(2, '0');
+        const url = `${activeCdn}gallery/${num}.jpg`;
+        const meta = BAG_CATALOG[(i-1) % BAG_CATALOG.length];
+        const item = { url, num, ...meta };
         const card = document.createElement('div');
         card.className = 'gallery-card';
-        card.innerHTML = `<img src="${it.url}" loading="lazy" alt="${it.brand} ${it.model}"><div class="gc-tag">${it.brand}<span style="opacity:0.7;font-size:13px;">  £${it.price}</span></div>`;
-        card.addEventListener('click', () => openLightbox(it));
+        card.style.opacity = '0.3';
+        card.innerHTML = `<img src="${url}" alt="${item.brand} ${item.model}" onload="this.parentElement.style.opacity='1'"><div class="gc-tag">${item.brand}<span style="opacity:0.7;font-size:13px;">  £${item.price}</span></div>`;
+        card.addEventListener('click', () => openLightbox(item));
         grid.appendChild(card);
+        slots.push({ card, item });
     }
+    console.log(`[gallery] ${TOTAL} cards mounted, images loading in parallel from ${activeCdn}`);
 })();
 
 // Lightbox with product details
