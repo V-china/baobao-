@@ -909,6 +909,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Bag catalog metadata - 每张图配品牌、款式、价格
 const CLIENT_SHOP_URL = 'https://v-china.github.io/baobao-/';
+// 走 jsDelivr CDN 加速图片（国内访问快得多）
+const IMG_CDN = 'https://cdn.jsdelivr.net/gh/V-china/baobao-@main/ad/';
 const BAG_CATALOG = [
     { brand: 'Chanel',        model: 'Classic Flap · Medium',  price: 690, retail: 8800 },
     { brand: 'Louis Vuitton', model: 'Neverfull MM',            price: 480, retail: 2100 },
@@ -960,7 +962,7 @@ const BAG_CATALOG = [
     for (let i = 1; i <= 40; i++) {
         const num = String(i).padStart(2, '0');
         for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
-            const url = `gallery/${num}.${ext}`;
+            const url = `${IMG_CDN}gallery/${num}.${ext}`;
             const ok = await new Promise(r => {
                 const t = new Image();
                 t.onload = () => r(true);
