@@ -787,6 +787,49 @@ footer a { color: #d4af37; }
     .lb-price { 
         font-size: 34px; 
     }
+    
+    /* 移动端步骤优化 - 横向2列 */
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .step {
+        padding: 16px 12px;
+    }
+    .step-num {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+    .step h3 {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+    .step p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    /* 移动端趋势优化 - 横向2列 */
+    .trends {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .trend {
+        padding: 24px 16px;
+    }
+    .trend-num {
+        font-size: 36px;
+    }
+    .trend h3 {
+        font-size: 16px;
+        margin: 10px 0 8px;
+    }
+    .trend p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
 }
 </style>
 </head>
