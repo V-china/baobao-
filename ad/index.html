@@ -690,19 +690,21 @@ footer a { color: #d4af37; }
         height: 18px; 
     }
     
-    /* 移动端图片画廊优化 */
+    /* 移动端图片画廊优化 - 确保显示 */
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 10px;
     }
     .gallery-card {
         aspect-ratio: 3 / 4;
+        min-height: 200px;
     }
     .gallery-card .gc-tag {
-        font-size: 12px;
-        bottom: 10px;
-        left: 10px;
-        right: 10px;
+        font-size: 11px;
+        bottom: 8px;
+        left: 8px;
+        right: 8px;
+        letter-spacing: 0.5px;
     }
     
     /* 移动端Hero按钮优化 */
@@ -720,19 +722,28 @@ footer a { color: #d4af37; }
         max-width: 320px;
     }
     
-    /* 移动端品牌卡片优化 */
+    /* 移动端品牌卡片优化 - 缩小尺寸 */
     .brands {
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        gap: 12px;
     }
     .brand-card {
-        padding: 24px 18px;
+        padding: 20px 14px;
+        min-height: 140px;
+        aspect-ratio: auto;
     }
     .brand-name {
-        font-size: 20px;
+        font-size: 18px;
+        line-height: 1.2;
     }
     .brand-models {
-        font-size: 11px;
+        font-size: 10px;
+        line-height: 1.5;
+    }
+    .brand-flag {
+        font-size: 18px;
+        top: 12px;
+        right: 12px;
     }
     
     /* 移动端优势卡片优化 */
@@ -752,6 +763,29 @@ footer a { color: #d4af37; }
     }
     .advantage .highlight {
         font-size: 28px;
+    }
+    
+    /* 移动端Lightbox优化 */
+    .lightbox-inner { 
+        flex-direction: column; 
+        gap: 16px; 
+        overflow-y: auto; 
+        max-height: 95vh; 
+    }
+    .lightbox-img-wrap { 
+        max-width: 92vw; 
+        max-height: 50vh; 
+    }
+    .lightbox-info { 
+        flex: 0 0 auto; 
+        width: 100%; 
+        padding: 22px; 
+    }
+    .lb-model { 
+        font-size: 24px; 
+    }
+    .lb-price { 
+        font-size: 34px; 
     }
 }
 </style>
@@ -1166,7 +1200,7 @@ const BAG_CATALOG = [
 ];
 
 // Featured gallery loader: 自动从多个 CDN 寻找最快的，加载 gallery/01.jpg .. gallery/40.jpg
-function probeImage(url, timeoutMs = 6000) {
+function probeImage(url, timeoutMs = 8000) {
     return new Promise(r => {
         const t = new Image();
         let done = false;
@@ -1186,16 +1220,20 @@ function probeImage(url, timeoutMs = 6000) {
     // 1. 探测最快可用的 CDN
     let activeCdn = null;
     for (const cdn of IMG_CDNS) {
-        if (await probeImage(`${cdn}gallery/01.jpg`, 5000)) {
+        console.log('[gallery] Testing CDN:', cdn);
+        if (await probeImage(`${cdn}gallery/01.jpg`, 8000)) {
             activeCdn = cdn;
             console.log('[gallery] Using CDN:', cdn);
             break;
         }
     }
-    if (!activeCdn) { console.warn('[gallery] No CDN reachable'); return; }
+    if (!activeCdn) { 
+        console.warn('[gallery] No CDN reachable, using fallback'); 
+        activeCdn = IMG_CDNS[IMG_CDNS.length - 1]; // 使用最后的相对路径作为后备
+    }
 
     // 2. 预先生成 24 个占位卡片（按顺序），并行加载图片，到位即显示
-    empty.remove();
+    if (empty) empty.remove();
     const slots = [];
     for (let i = 1; i <= TOTAL; i++) {
         const num = String(i).padStart(2, '0');
@@ -1205,7 +1243,7 @@ function probeImage(url, timeoutMs = 6000) {
         const card = document.createElement('div');
         card.className = 'gallery-card';
         card.style.opacity = '0.3';
-        card.innerHTML = `<img src="${url}" alt="${item.brand} ${item.model}" onload="this.parentElement.style.opacity='1'"><div class="gc-tag">${item.brand}<span style="opacity:0.7;font-size:13px;">  £${item.price}</span></div>`;
+        card.innerHTML = `<img src="${url}" alt="${item.brand} ${item.model}" onload="this.parentElement.style.opacity='1'" onerror="console.error('Failed to load:', this.src)"><div class="gc-tag">${item.brand}<span style="opacity:0.7;font-size:13px;">  £${item.price}</span></div>`;
         card.addEventListener('click', () => openLightbox(item));
         grid.appendChild(card);
         slots.push({ card, item });
