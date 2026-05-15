@@ -1105,123 +1105,64 @@ section:nth-of-type(2n) {
 /* === END LUXURY LIGHT THEME === */
 
 
-/* === EDITORIAL FULL-BLEED HERO BLOCKS === */
-.ed-hero {
+/* === LIFESTYLE BACKGROUND FILLS (behind big titles) === */
+.hero, .compare-bg, .trends-bg, #advantages {
     position: relative;
-    width: 100%;
-    height: 65vh;
-    min-height: 520px;
-    max-height: 780px;
-    display: flex;
-    align-items: center;
     overflow: hidden;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: var(--lux-ink) !important;
+    isolation: isolate;
 }
-.ed-hero:first-of-type { padding-top: 0 !important; }
-.ed-hero .ed-hero-img {
-    position: absolute; inset: 0;
+.hero::after,
+.compare-bg::after,
+.trends-bg::after,
+#advantages::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-size: cover;
-    background-position: center 22%;       /* favor face/upper body */
     background-repeat: no-repeat;
-    transition: transform 8s ease;
+    background-position: center 18%;
+    opacity: 0.32;
+    z-index: -1;
+    pointer-events: none;
+    mix-blend-mode: multiply;
 }
-.ed-hero:hover .ed-hero-img { transform: scale(1.04); }
-.ed-hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(15,11,8,0.78) 0%, rgba(15,11,8,0.45) 42%, rgba(15,11,8,0) 62%);
+.hero > *, .compare-bg > *, .trends-bg > *, #advantages > * {
+    position: relative;
     z-index: 1;
 }
-.ed-hero-chanel::before {
-    background: linear-gradient(270deg, rgba(15,11,8,0.78) 0%, rgba(15,11,8,0.45) 42%, rgba(15,11,8,0) 62%);
+
+/* Soft cream gradient veil to make text readable on top of the image */
+.hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(245,239,226,0.55) 0%, rgba(245,239,226,0.85) 70%);
+    z-index: 0;
+    pointer-events: none;
 }
-.ed-hero-overlay {
-    position: relative; z-index: 2;
-    padding: 0 8vw;
-    width: 100%;
-    color: #f5efe2;
-    display: flex;
-    flex-direction: column;
+
+/* Assign per-section images */
+.hero::after        { background-image: url('lifestyle/lv01.png'); }
+#advantages::after  { background-image: url('lifestyle/ch02.png'); background-position: center 25%; }
+.compare-bg::after  { background-image: url('lifestyle/di01.png'); background-position: center 22%; }
+.trends-bg::after   { background-image: url('lifestyle/di02.png'); background-position: center 30%; }
+
+/* Slight transparent layer on darker section types for text readability */
+.compare-bg::before, .trends-bg::before, #advantages::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(245,239,226,0.55) 0%, rgba(236,228,210,0.78) 100%);
+    z-index: 0;
+    pointer-events: none;
 }
-.ed-align-left { align-items: flex-start; text-align: left; }
-.ed-align-right { align-items: flex-end; text-align: right; }
-.ed-label {
-    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
-    color: var(--lux-accent-2); font-weight: 600; margin-bottom: 16px;
-}
-.ed-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(40px, 6.5vw, 88px);
-    font-weight: 700;
-    line-height: 0.95; letter-spacing: -0.03em;
-    color: #f5efe2 !important;
-    margin-bottom: 18px;
-}
-.ed-title em {
-    font-style: italic; font-weight: 400;
-    background: linear-gradient(135deg, var(--lux-accent), #e6c98a 50%, var(--lux-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.ed-tagline {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(15px, 1.4vw, 19px);
-    font-style: italic;
-    color: rgba(245,239,226,0.85) !important;
-    max-width: 420px;
-    margin-bottom: 22px;
-    line-height: 1.45;
-}
-.ed-meta {
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(245,239,226,0.6) !important;
-    margin-bottom: 22px;
-}
-.ed-meta span { color: inherit !important; }
-.ed-meta span + span { margin-left: 8px; }
-.ed-price-row {
-    display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px;
-}
-.ed-from {
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(245,239,226,0.7) !important;
-}
-.ed-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; font-weight: 700;
-    color: var(--lux-accent-2) !important;
-}
-.ed-btn {
-    display: inline-block;
-    padding: 14px 34px;
-    background: rgba(245,239,226,0.05) !important;
-    border: 1px solid rgba(245,239,226,0.7) !important;
-    color: #f5efe2 !important;
-    font-size: 11px; letter-spacing: 3.5px; text-transform: uppercase;
-    font-weight: 600;
-    border-radius: 0;
-    text-decoration: none;
-    transition: all .35s ease;
-    backdrop-filter: blur(4px);
-}
-.ed-btn:hover {
-    background: var(--lux-accent) !important;
-    border-color: var(--lux-accent) !important;
-    color: #1f1812 !important;
-    letter-spacing: 4.5px;
-}
+
+/* On mobile, dial down opacity further so text stays crisp */
 @media (max-width: 768px) {
-    .ed-hero { height: auto; min-height: 480px; max-height: none; }
-    .ed-hero::before {
-        background: linear-gradient(180deg, rgba(15,11,8,0.25) 0%, rgba(15,11,8,0.85) 100%) !important;
+    .hero::after, .compare-bg::after, .trends-bg::after, #advantages::after {
+        opacity: 0.22;
+        background-position: center top;
     }
-    .ed-hero-overlay { padding: 50px 24px; }
-    .ed-align-right { align-items: flex-start; text-align: left; }
-    .ed-title { font-size: 48px; }
-    .ed-tagline { font-size: 15px; max-width: 100%; }
 }
-/* === END EDITORIAL HERO === */
+/* === END LIFESTYLE BG FILLS === */
 </style>
 </head>
 <body>
@@ -1237,59 +1178,7 @@ section:nth-of-type(2n) {
     </div>
     <a href="#contact" class="nav-cta">Shop Now</a>
 </nav>
-<!-- ==== Editorial Hero: LV ==== -->
-<section class="ed-hero ed-hero-lv">
-  <div class="ed-hero-img" style="background-image: url('lifestyle/lv01.png');"></div>
-  <div class="ed-hero-overlay ed-align-left">
-    <div class="ed-label">Maison · I</div>
-    <h2 class="ed-title">Louis <em>Vuitton</em></h2>
-    <p class="ed-tagline">Monogram heritage, reimagined for the modern muse.</p>
-    <div class="ed-meta">
-      <span>Speedy</span><span>·</span><span>Neverfull</span><span>·</span><span>Pochette</span>
-    </div>
-    <div class="ed-price-row">
-      <span class="ed-from">From</span>
-      <span class="ed-price">£198</span>
-    </div>
-    <a href="#tier-198" class="ed-btn">Discover the Collection &rarr;</a>
-  </div>
-</section>
 
-<!-- ==== Editorial Hero: Chanel ==== -->
-<section class="ed-hero ed-hero-chanel">
-  <div class="ed-hero-img" style="background-image: url('lifestyle/ch02.png');"></div>
-  <div class="ed-hero-overlay ed-align-right">
-    <div class="ed-label">Maison · II</div>
-    <h2 class="ed-title">Cha<em>nel</em></h2>
-    <p class="ed-tagline">Quiet rebellion. Eternal black. Forever Chanel.</p>
-    <div class="ed-meta">
-      <span>2.55</span><span>·</span><span>Boy</span><span>·</span><span>22Bag</span>
-    </div>
-    <div class="ed-price-row">
-      <span class="ed-from">From</span>
-      <span class="ed-price">£268</span>
-    </div>
-    <a href="#tier-268" class="ed-btn">Discover the Collection &rarr;</a>
-  </div>
-</section>
-
-<!-- ==== Editorial Hero: Dior ==== -->
-<section class="ed-hero ed-hero-dior">
-  <div class="ed-hero-img" style="background-image: url('lifestyle/di01.png');"></div>
-  <div class="ed-hero-overlay ed-align-left">
-    <div class="ed-label">Maison · III</div>
-    <h2 class="ed-title">Di<em>or</em></h2>
-    <p class="ed-tagline">Couture craftsmanship, carried with grace.</p>
-    <div class="ed-meta">
-      <span>Lady Dior</span><span>·</span><span>Saddle</span><span>·</span><span>Toujours</span>
-    </div>
-    <div class="ed-price-row">
-      <span class="ed-from">From</span>
-      <span class="ed-price">£298</span>
-    </div>
-    <a href="#tier-298" class="ed-btn">Discover the Collection &rarr;</a>
-  </div>
-</section>
 
 
 <!-- ============ HERO ============ -->
