@@ -1105,80 +1105,125 @@ section:nth-of-type(2n) {
 /* === END LUXURY LIGHT THEME === */
 
 
-/* === AS WORN BY (lifestyle editorial) === */
-.lifestyle {
-    padding: 90px 20px 60px;
-    background: transparent !important;
+/* === EDITORIAL FULL-BLEED HERO BLOCKS === */
+.ed-hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
     overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--lux-ink) !important;
 }
-.lifestyle .ls-inner { max-width: 1320px; margin: 0 auto; }
-.lifestyle .ls-head {
-    text-align: center; margin-bottom: 50px;
+.ed-hero .ed-hero-img {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 6s ease;
 }
-.lifestyle .ls-label {
-    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
-    color: var(--lux-accent); font-weight: 600; margin-bottom: 12px;
-}
-.lifestyle .ls-title {
-    font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 54px);
-    font-weight: 700; color: var(--lux-ink); letter-spacing: -0.02em;
-}
-.lifestyle .ls-title em {
-    font-style: italic; font-weight: 400;
-    background: linear-gradient(135deg, var(--lux-accent), var(--lux-accent-2) 50%, var(--lux-accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.lifestyle .ls-sub {
-    margin-top: 12px; color: var(--lux-ink-soft);
-    font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
-}
-.ls-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 160px;
-    gap: 14px;
-}
-.ls-tile {
-    position: relative; overflow: hidden; border-radius: 4px;
-    background: var(--lux-card-bg); cursor: pointer;
-    box-shadow: 0 2px 8px rgba(31,24,18,0.08);
-    transition: transform .5s ease, box-shadow .5s ease;
-}
-.ls-tile img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: transform .8s ease;
-}
-.ls-tile::after {
+.ed-hero:hover .ed-hero-img { transform: scale(1.04); }
+.ed-hero::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(31,24,18,0.65) 100%);
-    pointer-events: none; transition: opacity .4s;
+    background: linear-gradient(90deg, rgba(15,11,8,0.78) 0%, rgba(15,11,8,0.45) 45%, rgba(15,11,8,0) 65%);
+    z-index: 1;
 }
-.ls-tile:hover { transform: translateY(-4px); box-shadow: 0 22px 50px -10px rgba(31,24,18,0.35); }
-.ls-tile:hover img { transform: scale(1.05); }
-.ls-tile .ls-tag {
-    position: absolute; left: 18px; bottom: 16px; z-index: 2;
-    color: #f5efe2; font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 600; letter-spacing: 1px;
-    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+.ed-hero-chanel::before {
+    background: linear-gradient(270deg, rgba(15,11,8,0.78) 0%, rgba(15,11,8,0.45) 45%, rgba(15,11,8,0) 65%);
 }
-.ls-tile .ls-tag .small {
-    display: block; font-family: 'Inter', sans-serif; font-size: 10px;
-    letter-spacing: 3px; font-weight: 500; opacity: 0.85;
-    color: var(--lux-accent-2); margin-bottom: 4px; text-transform: uppercase;
+.ed-hero-overlay {
+    position: relative; z-index: 2;
+    padding: 80px 8vw;
+    width: 100%;
+    color: #f5efe2;
 }
-/* tile layouts on 12-col grid */
-.ls-tile.t1 { grid-column: span 5; grid-row: span 3; }   /* large left */
-.ls-tile.t2 { grid-column: span 4; grid-row: span 2; }
-.ls-tile.t3 { grid-column: span 3; grid-row: span 2; }
-.ls-tile.t4 { grid-column: span 3; grid-row: span 2; }
-.ls-tile.t5 { grid-column: span 4; grid-row: span 2; }
-@media (max-width: 900px) {
-    .ls-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 140px; }
-    .ls-tile.t1 { grid-column: span 6; grid-row: span 2; }
-    .ls-tile.t2, .ls-tile.t3, .ls-tile.t4, .ls-tile.t5 { grid-column: span 3; grid-row: span 2; }
-    .ls-tile .ls-tag { font-size: 14px; left: 12px; bottom: 12px; }
+.ed-align-left { text-align: left; }
+.ed-align-right { text-align: right; margin-left: auto; }
+.ed-label {
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--lux-accent-2); font-weight: 600; margin-bottom: 18px;
 }
-/* === END LIFESTYLE === */
+.ed-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 110px);
+    font-weight: 700;
+    line-height: 0.95; letter-spacing: -0.03em;
+    color: #f5efe2 !important;
+    margin-bottom: 22px;
+}
+.ed-title em {
+    font-style: italic; font-weight: 400;
+    background: linear-gradient(135deg, var(--lux-accent), #e6c98a 50%, var(--lux-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ed-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-style: italic;
+    color: rgba(245,239,226,0.85) !important;
+    max-width: 460px;
+    margin-bottom: 28px;
+    line-height: 1.45;
+}
+.ed-align-right .ed-tagline { margin-left: auto; }
+.ed-meta {
+    display: inline-flex; gap: 12px; flex-wrap: wrap;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(245,239,226,0.6) !important;
+    margin-bottom: 30px;
+}
+.ed-meta span { color: inherit !important; }
+.ed-price-row {
+    display: inline-flex; align-items: baseline; gap: 12px; margin-bottom: 30px;
+}
+.ed-align-right .ed-price-row, .ed-align-right .ed-meta { float: right; clear: both; }
+.ed-from {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(245,239,226,0.7) !important;
+}
+.ed-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 700;
+    color: var(--lux-accent-2) !important;
+}
+.ed-btn {
+    display: inline-block;
+    padding: 16px 38px;
+    background: rgba(245,239,226,0.05) !important;
+    border: 1px solid rgba(245,239,226,0.7) !important;
+    color: #f5efe2 !important;
+    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 0;
+    text-decoration: none;
+    transition: all .35s ease;
+    backdrop-filter: blur(4px);
+    clear: both; display: inline-block;
+}
+.ed-btn:hover {
+    background: var(--lux-accent) !important;
+    border-color: var(--lux-accent) !important;
+    color: #1f1812 !important;
+    letter-spacing: 5px;
+}
+.ed-align-right .ed-btn { float: right; clear: both; }
+.ed-align-right { display: flex; flex-direction: column; align-items: flex-end; }
+.ed-align-right .ed-meta, .ed-align-right .ed-price-row, .ed-align-right .ed-btn { float: none; }
+
+@media (max-width: 768px) {
+    .ed-hero { min-height: 70vh; }
+    .ed-hero::before {
+        background: linear-gradient(180deg, rgba(15,11,8,0.3) 0%, rgba(15,11,8,0.85) 100%) !important;
+    }
+    .ed-hero-overlay { padding: 60px 24px; }
+    .ed-align-right { align-items: flex-start; text-align: left; }
+    .ed-title { font-size: 56px; }
+    .ed-tagline { font-size: 16px; }
+}
+/* === END EDITORIAL HERO === */
 </style>
 </head>
 <body>
@@ -1298,73 +1343,65 @@ section:nth-of-type(2n) {
 </section>
 
 <!-- ============ BRANDS ============ -->
-<section class="section reveal" id="brands">
-    <div class="section-label">The Collection</div>
-    <h2 class="section-title">Ten Heritage Houses</h2>
-    <p class="section-subtitle">Handpicked icons from the world's most coveted brands, available now from our UK-local stock.</p>
-    <div class="brands">
-        <div class="brand-card">
-            <div class="brand-name">CHANEL</div>
-            <div class="brand-models">Classic Flap<br>Boy Bag · 19 Bag<br>Shopping Tote</div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">LOUIS<br>VUITTON</div>
-            <div class="brand-models">Neverfull MM<br>Speedy · Pochette<br>Nano Speedy</div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">GUCCI</div>
-            <div class="brand-models">Jackie 1961<br>Horsebit 1955<br>Dionysus</div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">DIOR</div>
-            <div class="brand-models">Saddle Bag<br>Book Tote<br>Lady Dior</div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">FENDI</div>
-            <div class="brand-models">Baguette<br>Peekaboo<br>First</div>
-        </div>
-        <div class="brand-card uk-pick">
-            <div class="brand-flag">🇬🇧</div>
-            <div class="brand-name">MULBERRY</div>
-            <div class="brand-models">Alexa · Bayswater<br>Amberley<br><em>British Heritage</em></div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">PRADA</div>
-            <div class="brand-models">Re-Edition Nylon<br>Galleria<br>Cleo</div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">BOTTEGA<br>VENETA</div>
-            <div class="brand-models">Jodie · Cassette<br>Pouch<br>Andiamo</div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">LOEWE</div>
-            <div class="brand-models">Puzzle · Flamenco<br>Hammock<br>Paseo</div>
-        </div>
-        <div class="brand-card">
-            <div class="brand-name">CELINE</div>
-            <div class="brand-models">Triomphe<br>Luggage<br>Ava</div>
-        </div>
-    </div>
-</section>
+
 
 <!-- ============ FEATURED GALLERY ============ -->
 
-<section class="lifestyle">
-  <div class="ls-inner">
-    <div class="ls-head">
-      <div class="ls-label">As Worn By</div>
-      <h2 class="ls-title">The <em>Modern Icon</em></h2>
-      <div class="ls-sub">Editorial · Effortless · Iconic</div>
+
+<!-- ==== Editorial Hero: LV ==== -->
+<section class="ed-hero ed-hero-lv">
+  <div class="ed-hero-img" style="background-image: url('lifestyle/lv01.png');"></div>
+  <div class="ed-hero-overlay ed-align-left">
+    <div class="ed-label">Maison · I</div>
+    <h2 class="ed-title">Louis <em>Vuitton</em></h2>
+    <p class="ed-tagline">Monogram heritage, reimagined for the modern muse.</p>
+    <div class="ed-meta">
+      <span>Speedy</span><span>·</span><span>Neverfull</span><span>·</span><span>Pochette</span>
     </div>
-    <div class="ls-grid">
-      <div class="ls-tile t1"><img src="lifestyle/lv01.png" alt="LV editorial"><div class="ls-tag"><span class="small">Louis Vuitton</span>Speedy Monogram</div></div>
-      <div class="ls-tile t2"><img src="lifestyle/ch02.png" alt="Chanel editorial"><div class="ls-tag"><span class="small">Chanel</span>Boy Bag</div></div>
-      <div class="ls-tile t3"><img src="lifestyle/di01.png" alt="Dior editorial"><div class="ls-tag"><span class="small">Dior</span>Lady Dior</div></div>
-      <div class="ls-tile t4"><img src="lifestyle/lv02.png" alt="LV editorial"><div class="ls-tag"><span class="small">Louis Vuitton</span>Neverfull</div></div>
-      <div class="ls-tile t5"><img src="lifestyle/di02.png" alt="Dior editorial"><div class="ls-tag"><span class="small">Dior</span>Saddle Bag</div></div>
+    <div class="ed-price-row">
+      <span class="ed-from">From</span>
+      <span class="ed-price">£198</span>
     </div>
+    <a href="#tier-198" class="ed-btn">Discover the Collection &rarr;</a>
   </div>
 </section>
+
+<!-- ==== Editorial Hero: Chanel ==== -->
+<section class="ed-hero ed-hero-chanel">
+  <div class="ed-hero-img" style="background-image: url('lifestyle/ch02.png');"></div>
+  <div class="ed-hero-overlay ed-align-right">
+    <div class="ed-label">Maison · II</div>
+    <h2 class="ed-title">Cha<em>nel</em></h2>
+    <p class="ed-tagline">Quiet rebellion. Eternal black. Forever Chanel.</p>
+    <div class="ed-meta">
+      <span>2.55</span><span>·</span><span>Boy</span><span>·</span><span>22Bag</span>
+    </div>
+    <div class="ed-price-row">
+      <span class="ed-from">From</span>
+      <span class="ed-price">£268</span>
+    </div>
+    <a href="#tier-268" class="ed-btn">Discover the Collection &rarr;</a>
+  </div>
+</section>
+
+<!-- ==== Editorial Hero: Dior ==== -->
+<section class="ed-hero ed-hero-dior">
+  <div class="ed-hero-img" style="background-image: url('lifestyle/di01.png');"></div>
+  <div class="ed-hero-overlay ed-align-left">
+    <div class="ed-label">Maison · III</div>
+    <h2 class="ed-title">Di<em>or</em></h2>
+    <p class="ed-tagline">Couture craftsmanship, carried with grace.</p>
+    <div class="ed-meta">
+      <span>Lady Dior</span><span>·</span><span>Saddle</span><span>·</span><span>Toujours</span>
+    </div>
+    <div class="ed-price-row">
+      <span class="ed-from">From</span>
+      <span class="ed-price">£298</span>
+    </div>
+    <a href="#tier-298" class="ed-btn">Discover the Collection &rarr;</a>
+  </div>
+</section>
+
 
 <section class="section reveal" id="featured">
     <div class="section-label">Featured This Week</div>
