@@ -1163,6 +1163,396 @@ section:nth-of-type(2n) {
     }
 }
 /* === END LIFESTYLE BG FILLS === */
+
+
+/* ============================================== */
+/*  PURE CHANEL THEME · B&W · DIDOT · MINIMALIST   */
+/* ============================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500&display=swap');
+
+:root {
+    --c-white: #ffffff;
+    --c-off:   #faf9f7;
+    --c-black: #000000;
+    --c-ink:   #0a0a0a;
+    --c-mute:  #6b6b6b;
+    --c-line:  #d4d4d4;
+}
+
+html, body {
+    background: var(--c-white) !important;
+    color: var(--c-ink) !important;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5,
+.section-title, .ed-title, .hero h1, .lifestyle .ls-title, .ts-brand {
+    font-family: 'Cormorant Garamond', 'Didot', 'Playfair Display', serif !important;
+    font-weight: 400 !important;
+    color: var(--c-black) !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--c-black) !important;
+}
+em, i { font-style: italic !important; }
+
+/* Override all gold/colored highlights to pure black */
+.gold, [class*="gold"], .text-gold, span.gold {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: var(--c-black) !important;
+    color: var(--c-black) !important;
+    font-style: italic;
+}
+
+/* Section backgrounds: erase all warm cream + gradients */
+section, .hero, .compare-bg, .trends-bg, #advantages, #featured, #contact, #trends {
+    background: var(--c-white) !important;
+    background-image: none !important;
+}
+section::before, section::after,
+.hero::before, .hero::after,
+#advantages::before, #advantages::after,
+.compare-bg::before, .compare-bg::after,
+.trends-bg::before, .trends-bg::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Body text */
+p, li, span:not([class]), .hero p, .section-subtitle {
+    color: var(--c-ink) !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Nav: pure white with black text */
+nav {
+    background: var(--c-white) !important;
+    backdrop-filter: none !important;
+    border-bottom: 1px solid var(--c-line) !important;
+    padding: 18px 40px !important;
+}
+nav .logo {
+    font-family: 'Cormorant Garamond', 'Didot', serif !important;
+    font-weight: 400 !important;
+    color: var(--c-black) !important;
+    -webkit-text-fill-color: var(--c-black) !important;
+    background: none !important;
+    letter-spacing: 6px !important;
+    font-size: 22px !important;
+    text-transform: uppercase;
+}
+.nav-links a, nav a:not(.nav-cta):not(.logo) {
+    color: var(--c-black) !important;
+    opacity: 1 !important;
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase;
+    font-weight: 400 !important;
+}
+.nav-links a:hover { color: var(--c-mute) !important; }
+.nav-cta {
+    background: var(--c-black) !important;
+    color: var(--c-white) !important;
+    border: 1px solid var(--c-black) !important;
+    border-radius: 0 !important;
+    padding: 12px 24px !important;
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+}
+.nav-cta:hover { background: var(--c-white) !important; color: var(--c-black) !important; }
+
+/* HERO: full-bleed B&W image with white text */
+.hero {
+    min-height: 92vh !important;
+    background: var(--c-black) !important;
+    background-image: url('lifestyle/ch_hero1.png') !important;
+    background-size: cover !important;
+    background-position: center 25% !important;
+    background-repeat: no-repeat !important;
+    color: var(--c-white) !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding: 0 0 100px 0 !important;
+    text-align: center !important;
+    position: relative !important;
+    filter: grayscale(100%) contrast(1.05);
+}
+.hero::after {
+    display: block !important; content: '' !important;
+    position: absolute !important; inset: 0 !important;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.65) 100%) !important;
+    z-index: 0 !important; pointer-events: none !important;
+}
+.hero > * { position: relative; z-index: 1; max-width: 900px; padding: 0 24px; }
+.hero h1 {
+    color: var(--c-white) !important;
+    -webkit-text-fill-color: var(--c-white) !important;
+    font-size: clamp(48px, 7vw, 96px) !important;
+    line-height: 1 !important;
+    margin-bottom: 24px !important;
+}
+.hero p {
+    color: rgba(255,255,255,0.85) !important;
+    font-size: 14px !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase;
+    font-weight: 300 !important;
+}
+.hero .badge {
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.6) !important;
+    color: var(--c-white) !important;
+    border-radius: 0 !important;
+    padding: 8px 20px !important;
+    font-size: 10px !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase;
+}
+
+/* All buttons: outline only, hover invert */
+button, .btn, a.btn, .nav-cta, .ed-btn,
+[class*="btn-"], a[class*="cta"], .lb-cta {
+    background: transparent !important;
+    color: var(--c-black) !important;
+    border: 1px solid var(--c-black) !important;
+    border-radius: 0 !important;
+    padding: 16px 36px !important;
+    font-size: 11px !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    display: inline-block;
+    transition: all .35s ease;
+}
+button:hover, .btn:hover, a.btn:hover,
+[class*="btn-"]:hover, a[class*="cta"]:hover {
+    background: var(--c-black) !important;
+    color: var(--c-white) !important;
+}
+.hero button, .hero .btn, .hero a[class*="btn"] {
+    background: transparent !important;
+    border-color: var(--c-white) !important;
+    color: var(--c-white) !important;
+}
+.hero button:hover, .hero .btn:hover {
+    background: var(--c-white) !important;
+    color: var(--c-black) !important;
+}
+
+/* Section title sizing */
+.section-title {
+    font-size: clamp(36px, 5vw, 64px) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: 16px !important;
+}
+.section-subtitle, .section-label {
+    color: var(--c-mute) !important;
+    font-size: 11px !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase;
+    font-weight: 400 !important;
+}
+
+/* Cards in advantages/trends: pure white with thin black border */
+.adv-card, .brand-card, .trend-card, [class*="-card"]:not(.gallery-card) {
+    background: var(--c-white) !important;
+    border: 1px solid var(--c-line) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 32px !important;
+}
+.adv-card *, .brand-card *, .trend-card * { color: var(--c-black) !important; }
+
+/* Tier section headers: simplify to brand name only */
+.tier-section { margin-bottom: 100px !important; }
+.tier-section-header { gap: 0 !important; margin-bottom: 60px !important; flex-direction: column; }
+.tier-section-header::before, .tier-section-header::after { display: none !important; }
+.tier-section-header .ts-num { display: none !important; }
+.tier-section-header .ts-meta { text-align: center; }
+.tier-section-header .ts-brand {
+    font-family: 'Cormorant Garamond', 'Didot', serif !important;
+    font-size: clamp(40px, 5vw, 64px) !important;
+    font-weight: 400 !important;
+    color: var(--c-black) !important;
+    -webkit-text-fill-color: var(--c-black) !important;
+    background: none !important;
+    letter-spacing: 0.5em !important;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.tier-section-header .ts-sub {
+    color: var(--c-mute) !important;
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    font-weight: 300 !important;
+}
+
+/* Gallery cards: 1:1 white background */
+.tier-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    gap: 32px 24px !important;
+}
+.gallery-card .card-img {
+    aspect-ratio: 1/1 !important;
+    background: var(--c-off) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid var(--c-line) !important;
+}
+.gallery-card .card-img::before { display: none !important; }
+.gallery-card:hover .card-img {
+    box-shadow: none !important;
+    border-color: var(--c-black) !important;
+}
+.gallery-card img {
+    padding: 22px !important;
+    background: transparent !important;
+}
+.card-info { padding: 18px 0 0 !important; text-align: center; }
+.card-info .ci-brand {
+    color: var(--c-mute) !important;
+    font-size: 10px !important;
+    letter-spacing: 4px !important;
+    font-weight: 400 !important;
+}
+.card-info .ci-model {
+    color: var(--c-black) !important;
+    font-family: 'Cormorant Garamond', 'Didot', serif !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    min-height: 48px !important;
+}
+.card-info .ci-price {
+    color: var(--c-black) !important;
+    font-family: 'Cormorant Garamond', 'Didot', serif !important;
+    font-weight: 500 !important;
+    font-size: 22px !important;
+}
+.card-info .ci-retail {
+    color: var(--c-mute) !important;
+    font-size: 12px !important;
+    text-decoration: line-through !important;
+}
+
+/* Lightbox: pure black */
+.lightbox { background: rgba(0,0,0,0.97) !important; }
+.lightbox-info {
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 0 !important;
+    color: var(--c-white) !important;
+}
+.lightbox-info * { color: var(--c-white) !important; }
+.lb-brand, .lb-price { color: var(--c-white) !important; font-style: italic; }
+.lb-cta {
+    background: var(--c-white) !important;
+    color: var(--c-black) !important;
+    border: 1px solid var(--c-white) !important;
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.lb-cta:hover { background: transparent !important; color: var(--c-white) !important; }
+
+/* Footer */
+footer {
+    background: var(--c-black) !important;
+    color: var(--c-white) !important;
+    border-top: none !important;
+    padding: 80px 24px !important;
+}
+footer * { color: var(--c-white) !important; }
+footer .logo {
+    color: var(--c-white) !important;
+    -webkit-text-fill-color: var(--c-white) !important;
+    background: none !important;
+    letter-spacing: 8px !important;
+}
+
+/* ===== EDITORIAL DOUBLE-COLUMN BLOCKS ===== */
+.chanel-editorial {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    background: var(--c-white);
+}
+.chanel-editorial.reverse { direction: rtl; }
+.chanel-editorial.reverse > * { direction: ltr; }
+.chanel-editorial .ce-img {
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) contrast(1.05);
+    min-height: 60vh;
+}
+.chanel-editorial .ce-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 8vw;
+    background: var(--c-white);
+}
+.chanel-editorial .ce-label {
+    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--c-mute); margin-bottom: 24px;
+}
+.chanel-editorial .ce-title {
+    font-family: 'Cormorant Garamond','Didot',serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400; line-height: 1.05;
+    color: var(--c-black);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+}
+.chanel-editorial .ce-title em { font-style: italic; }
+.chanel-editorial .ce-body {
+    font-size: 15px; line-height: 1.8; color: var(--c-ink);
+    margin-bottom: 40px; max-width: 480px; font-weight: 300;
+}
+.chanel-editorial .ce-link {
+    align-self: flex-start;
+    color: var(--c-black) !important;
+    border: 1px solid var(--c-black) !important;
+    padding: 16px 38px !important;
+    text-decoration: none;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    font-weight: 500;
+    transition: all .35s ease;
+}
+.chanel-editorial .ce-link:hover {
+    background: var(--c-black) !important;
+    color: var(--c-white) !important;
+}
+@media (max-width: 900px) {
+    .chanel-editorial { grid-template-columns: 1fr; }
+    .chanel-editorial.reverse { direction: ltr; }
+    .chanel-editorial .ce-img { min-height: 70vh; }
+    .chanel-editorial .ce-text { padding: 60px 24px; }
+}
+
+/* Remove all warm/gold/cream remnants */
+[style*="#d4af37"], [style*="#f5e1a8"], [style*="background: linear-gradient"][style*="gold"] {
+    background: var(--c-white) !important;
+    color: var(--c-black) !important;
+}
+
+/* === END CHANEL THEME === */
 </style>
 </head>
 <body>
@@ -1303,6 +1693,17 @@ section:nth-of-type(2n) {
         </div>
     </div>
 </section>
+
+<section class="chanel-editorial reverse">
+  <div class="ce-img" style="background-image: url('lifestyle/ch_port4.png');"></div>
+  <div class="ce-text">
+    <div class="ce-label">UK Local Stock</div>
+    <h2 class="ce-title">Delivered in <em>days</em>,<br>not weeks.</h2>
+    <p class="ce-body">No customs delays. No 30-day waits. Our entire edit ships from our UK warehouse — usually within 3-5 business days. Discreet packaging. Tracked shipping.</p>
+    <a href="#contact" class="ce-link">Begin Your Order &rarr;</a>
+  </div>
+</section>
+
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
