@@ -940,6 +940,169 @@ footer a { color: #d4af37; }
     .gallery-card img { padding: 12px !important; }
 }
 /* === END PREMIUM GALLERY === */
+
+
+/* === LUXURY LIGHT THEME (Hermès / Loewe inspired) === */
+:root {
+    --lux-bg:        #f5efe2;   /* warm parchment */
+    --lux-bg-alt:    #ece4d2;   /* slightly deeper section */
+    --lux-card-bg:   #e6dcc4;   /* warm champagne for image area */
+    --lux-card-bg2:  #d4c5a3;   /* champagne deep */
+    --lux-ink:       #1f1812;   /* deep brown-black text */
+    --lux-ink-soft:  #6b5d4d;   /* muted brown */
+    --lux-accent:    #a07c4a;   /* refined champagne bronze */
+    --lux-accent-2:  #c9a165;   /* lighter bronze for hover */
+    --lux-line:      rgba(160,124,74,0.25);
+}
+html, body { background: var(--lux-bg) !important; color: var(--lux-ink) !important; }
+body { color: var(--lux-ink) !important; }
+
+/* Make all dark section backgrounds disappear */
+section, .hero, .advantages, .brands, .trends, .how-it-works, .cta, [class*="bg-dark"] {
+    background: transparent !important;
+}
+.hero {
+    background: radial-gradient(ellipse at top, rgba(160,124,74,0.10), transparent 60%),
+                linear-gradient(180deg, var(--lux-bg) 0%, var(--lux-bg-alt) 100%) !important;
+}
+
+/* Nav */
+nav {
+    background: rgba(245,239,226,0.92) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 1px solid var(--lux-line) !important;
+}
+.nav-links a, nav a:not(.nav-cta):not(.logo) {
+    color: var(--lux-ink) !important;
+    opacity: 0.7 !important;
+}
+.nav-links a:hover, nav a:not(.nav-cta):hover { opacity: 1 !important; color: var(--lux-accent) !important; }
+.logo {
+    background: none !important;
+    -webkit-text-fill-color: var(--lux-ink) !important;
+    color: var(--lux-ink) !important;
+    letter-spacing: 3px;
+}
+.nav-cta {
+    background: var(--lux-ink) !important;
+    color: var(--lux-bg) !important;
+    border: 1px solid var(--lux-ink) !important;
+    box-shadow: none !important;
+}
+.nav-cta:hover { background: var(--lux-accent) !important; border-color: var(--lux-accent) !important; }
+
+/* Headings */
+h1, h2, h3, h4, h5 { color: var(--lux-ink) !important; }
+p, li, span:not([class]) { color: var(--lux-ink) !important; }
+.gold, span.gold, .text-gold {
+    background: linear-gradient(135deg, var(--lux-accent), var(--lux-accent-2) 50%, var(--lux-accent)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* Hero */
+.hero h1 { color: var(--lux-ink) !important; }
+.hero p { color: var(--lux-ink-soft) !important; opacity: 1 !important; }
+.hero .badge {
+    background: rgba(160,124,74,0.10) !important;
+    border-color: rgba(160,124,74,0.4) !important;
+    color: var(--lux-accent) !important;
+}
+.tier-nav a {
+    color: var(--lux-accent) !important;
+    border-color: rgba(160,124,74,0.5) !important;
+}
+.tier-nav a:hover { background: rgba(160,124,74,0.12) !important; }
+
+/* Cards from sections (advantages, brands, etc) */
+.adv-card, .brand-card, .trend-card, [class*="-card"]:not(.gallery-card) {
+    background: rgba(255,255,255,0.4) !important;
+    border: 1px solid var(--lux-line) !important;
+    color: var(--lux-ink) !important;
+    box-shadow: 0 2px 8px rgba(31,24,18,0.04) !important;
+}
+.adv-card *, .brand-card *, .trend-card * { color: var(--lux-ink) !important; }
+.adv-card h3, .brand-card h3, .trend-card h3 { color: var(--lux-ink) !important; }
+
+/* Tier headers */
+.tier-section-header .ts-num { color: var(--lux-accent) !important; }
+.tier-section-header .ts-brand { color: var(--lux-ink) !important; }
+.tier-section-header .ts-sub { color: var(--lux-accent) !important; }
+.tier-section-header::before, .tier-section-header::after {
+    background: linear-gradient(90deg, transparent, var(--lux-line), transparent) !important;
+}
+
+/* Gallery cards */
+.gallery-card .card-img {
+    background: linear-gradient(160deg, var(--lux-card-bg) 0%, var(--lux-card-bg2) 100%) !important;
+    box-shadow: 0 2px 6px rgba(31,24,18,0.10) !important;
+    border-radius: 6px !important;
+}
+.gallery-card:hover .card-img {
+    box-shadow: 0 22px 45px -10px rgba(31,24,18,0.30), 0 0 0 1px var(--lux-accent) !important;
+}
+.gallery-card:hover .card-img::before { border-color: var(--lux-accent) !important; }
+.card-info .ci-brand { color: var(--lux-accent) !important; }
+.card-info .ci-model { color: var(--lux-ink) !important; }
+.card-info .ci-price { color: var(--lux-accent) !important; }
+.card-info .ci-retail { color: rgba(31,24,18,0.4) !important; }
+
+/* CTA buttons */
+button.btn, .btn, [class*="btn-primary"], a.cta-btn {
+    background: var(--lux-ink) !important;
+    color: var(--lux-bg) !important;
+    border: 1px solid var(--lux-ink) !important;
+    box-shadow: none !important;
+}
+button.btn:hover, .btn:hover, a.cta-btn:hover {
+    background: var(--lux-accent) !important;
+    border-color: var(--lux-accent) !important;
+}
+
+/* Lightbox: keep dark for image focus, but warmer dark */
+.lightbox { background: rgba(31,24,18,0.96) !important; }
+.lightbox-info {
+    background: linear-gradient(180deg, rgba(160,124,74,0.12), rgba(160,124,74,0.04)) !important;
+    border-color: rgba(160,124,74,0.4) !important;
+    color: #f5efe2 !important;
+}
+.lightbox-info * { color: #f5efe2 !important; }
+.lb-brand { color: var(--lux-accent-2) !important; }
+.lb-price { color: var(--lux-accent-2) !important; }
+.lb-cta {
+    background: linear-gradient(135deg, var(--lux-accent), var(--lux-accent-2)) !important;
+    color: #1f1812 !important;
+}
+.lightbox-close {
+    background: rgba(160,124,74,0.2) !important;
+    color: #f5efe2 !important;
+    border-color: rgba(160,124,74,0.5) !important;
+}
+
+/* Footer */
+footer {
+    background: var(--lux-ink) !important;
+    color: var(--lux-bg) !important;
+    border-top: 1px solid var(--lux-accent) !important;
+}
+footer * { color: var(--lux-bg) !important; }
+footer .logo { color: var(--lux-accent-2) !important; -webkit-text-fill-color: var(--lux-accent-2) !important; }
+
+/* Section dividers / borders */
+[style*="border-top"], [style*="border-bottom"] { border-color: var(--lux-line) !important; }
+
+/* Section header labels (small caps) */
+.section-label, [class*="label"]:not(.lb-brand) {
+    color: var(--lux-accent) !important;
+}
+
+/* Alternating sections subtle */
+section:nth-of-type(2n) {
+    background: var(--lux-bg-alt) !important;
+}
+
+/* === END LUXURY LIGHT THEME === */
 </style>
 </head>
 <body>
