@@ -1103,6 +1103,82 @@ section:nth-of-type(2n) {
 }
 
 /* === END LUXURY LIGHT THEME === */
+
+
+/* === AS WORN BY (lifestyle editorial) === */
+.lifestyle {
+    padding: 90px 20px 60px;
+    background: transparent !important;
+    overflow: hidden;
+}
+.lifestyle .ls-inner { max-width: 1320px; margin: 0 auto; }
+.lifestyle .ls-head {
+    text-align: center; margin-bottom: 50px;
+}
+.lifestyle .ls-label {
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--lux-accent); font-weight: 600; margin-bottom: 12px;
+}
+.lifestyle .ls-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 54px);
+    font-weight: 700; color: var(--lux-ink); letter-spacing: -0.02em;
+}
+.lifestyle .ls-title em {
+    font-style: italic; font-weight: 400;
+    background: linear-gradient(135deg, var(--lux-accent), var(--lux-accent-2) 50%, var(--lux-accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.lifestyle .ls-sub {
+    margin-top: 12px; color: var(--lux-ink-soft);
+    font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+}
+.ls-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 160px;
+    gap: 14px;
+}
+.ls-tile {
+    position: relative; overflow: hidden; border-radius: 4px;
+    background: var(--lux-card-bg); cursor: pointer;
+    box-shadow: 0 2px 8px rgba(31,24,18,0.08);
+    transition: transform .5s ease, box-shadow .5s ease;
+}
+.ls-tile img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .8s ease;
+}
+.ls-tile::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(31,24,18,0.65) 100%);
+    pointer-events: none; transition: opacity .4s;
+}
+.ls-tile:hover { transform: translateY(-4px); box-shadow: 0 22px 50px -10px rgba(31,24,18,0.35); }
+.ls-tile:hover img { transform: scale(1.05); }
+.ls-tile .ls-tag {
+    position: absolute; left: 18px; bottom: 16px; z-index: 2;
+    color: #f5efe2; font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 600; letter-spacing: 1px;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+.ls-tile .ls-tag .small {
+    display: block; font-family: 'Inter', sans-serif; font-size: 10px;
+    letter-spacing: 3px; font-weight: 500; opacity: 0.85;
+    color: var(--lux-accent-2); margin-bottom: 4px; text-transform: uppercase;
+}
+/* tile layouts on 12-col grid */
+.ls-tile.t1 { grid-column: span 5; grid-row: span 3; }   /* large left */
+.ls-tile.t2 { grid-column: span 4; grid-row: span 2; }
+.ls-tile.t3 { grid-column: span 3; grid-row: span 2; }
+.ls-tile.t4 { grid-column: span 3; grid-row: span 2; }
+.ls-tile.t5 { grid-column: span 4; grid-row: span 2; }
+@media (max-width: 900px) {
+    .ls-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 140px; }
+    .ls-tile.t1 { grid-column: span 6; grid-row: span 2; }
+    .ls-tile.t2, .ls-tile.t3, .ls-tile.t4, .ls-tile.t5 { grid-column: span 3; grid-row: span 2; }
+    .ls-tile .ls-tag { font-size: 14px; left: 12px; bottom: 12px; }
+}
+/* === END LIFESTYLE === */
 </style>
 </head>
 <body>
@@ -1272,6 +1348,24 @@ section:nth-of-type(2n) {
 </section>
 
 <!-- ============ FEATURED GALLERY ============ -->
+
+<section class="lifestyle">
+  <div class="ls-inner">
+    <div class="ls-head">
+      <div class="ls-label">As Worn By</div>
+      <h2 class="ls-title">The <em>Modern Icon</em></h2>
+      <div class="ls-sub">Editorial · Effortless · Iconic</div>
+    </div>
+    <div class="ls-grid">
+      <div class="ls-tile t1"><img src="lifestyle/lv01.png" alt="LV editorial"><div class="ls-tag"><span class="small">Louis Vuitton</span>Speedy Monogram</div></div>
+      <div class="ls-tile t2"><img src="lifestyle/ch02.png" alt="Chanel editorial"><div class="ls-tag"><span class="small">Chanel</span>Boy Bag</div></div>
+      <div class="ls-tile t3"><img src="lifestyle/di01.png" alt="Dior editorial"><div class="ls-tag"><span class="small">Dior</span>Lady Dior</div></div>
+      <div class="ls-tile t4"><img src="lifestyle/lv02.png" alt="LV editorial"><div class="ls-tag"><span class="small">Louis Vuitton</span>Neverfull</div></div>
+      <div class="ls-tile t5"><img src="lifestyle/di02.png" alt="Dior editorial"><div class="ls-tag"><span class="small">Dior</span>Saddle Bag</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="section reveal" id="featured">
     <div class="section-label">Featured This Week</div>
     <h2 class="section-title">In Stock Now</h2>
