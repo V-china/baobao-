@@ -1561,6 +1561,33 @@ img { content-visibility: auto; }
 section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
 .hero { content-visibility: visible; }  /* keep hero rendered */
 /* === END PERFORMANCE === */
+
+
+/* === Tame product image backgrounds (green/black tiles) === */
+.gallery-card .card-img {
+    background: #ffffff !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: relative;
+}
+.gallery-card .card-img img {
+    width: 84% !important;
+    height: 84% !important;
+    margin: 8% !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+    background: #ffffff !important;
+    border-radius: 2px;
+    transition: transform .5s ease;
+}
+.gallery-card:hover .card-img img { transform: scale(1.04); }
+/* Subtle inner shadow to fade colored edges */
+.gallery-card .card-img::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    box-shadow: inset 0 0 40px 8px rgba(255,255,255,0.5);
+    z-index: 1;
+}
+/* === END product tame === */
 </style>
 
     <link rel="preload" as="image" href="lifestyle/ch_hero1.jpg" fetchpriority="high">
@@ -1917,36 +1944,36 @@ const IMG_CDNS = [
     './'  // 最后退回相对路径（同源 GitHub Pages）
 ];
 const BAG_CATALOG = [
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "allinbb 水桶包", img: 'gallery/198/01.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646920' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "法棍包", img: 'gallery/198/02.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646916' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "L 牛角包", img: 'gallery/198/03.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646765' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "NF 购物袋", img: 'gallery/198/04.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646631' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "薯条包", img: 'gallery/198/05.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646919' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Speedy 枕头", img: 'gallery/198/06.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646770' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "邮差包", img: 'gallery/198/07.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646663' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "法棍包 经典", img: 'gallery/198/08.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646916' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "贝壳包", img: 'gallery/198/09.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646629' },
-    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "发财桶", img: 'gallery/198/10.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646917' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "Duma 双肩包", img: 'gallery/268/01.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646698' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "22Bag 迷你", img: 'gallery/268/02.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646713' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "正品皮 香奈儿", img: 'gallery/268/03.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646792' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "2.55 系列", img: 'gallery/268/04.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646827' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "Le Boy 合集", img: 'gallery/268/05.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646664' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "双金球 合集", img: 'gallery/268/06.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646828' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "小盒子包合集", img: 'gallery/268/07.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646646' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "方胖子小金球", img: 'gallery/268/08.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646667' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "流浪包 全品", img: 'gallery/268/09.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646824' },
-    { price: 268, retail: 4500, brand: 'Chanel', model: "邮差包合集", img: 'gallery/268/10.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646731' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "蒙田包", img: 'gallery/298/01.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646775' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "Toujours 系列", img: 'gallery/298/02.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646726' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "CD 双肩包", img: 'gallery/298/03.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646628' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "横版戴妃", img: 'gallery/298/04.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646940' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "月亮", img: 'gallery/298/05.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646724' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "戴妃 · 正品渠道货", img: 'gallery/298/06.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646863' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "戴妃饭盒包", img: 'gallery/298/07.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646747' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "新托特 · 正品", img: 'gallery/298/08.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646880' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "CD 邮差包", img: 'gallery/298/09.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646645' },
-    { price: 298, retail: 3800, brand: 'Dior', model: "马鞍包", img: 'gallery/298/10.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646692' }
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Alma BB Bucket", img: 'gallery/198/01.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646920' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Multi Pochette", img: 'gallery/198/02.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646916' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Loop Hobo", img: 'gallery/198/03.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646765' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Neverfull Tote", img: 'gallery/198/04.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646631' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Mini Pochette", img: 'gallery/198/05.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646919' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Speedy 25", img: 'gallery/198/06.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646770' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Pochette Métis", img: 'gallery/198/07.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646663' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Classic Baguette", img: 'gallery/198/08.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646916' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Coussin PM", img: 'gallery/198/09.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646629' },
+    { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Petit Noé", img: 'gallery/198/10.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646917' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Duma Backpack", img: 'gallery/268/01.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646698' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Mini 22", img: 'gallery/268/02.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646713' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Classic Lambskin", img: 'gallery/268/03.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646792' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "2.55 Reissue", img: 'gallery/268/04.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646827' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Le Boy", img: 'gallery/268/05.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646664' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "CC Twin Gold", img: 'gallery/268/06.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646828' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Mini Box", img: 'gallery/268/07.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646646' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Small Square", img: 'gallery/268/08.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646667' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Gabrielle Hobo", img: 'gallery/268/09.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646824' },
+    { price: 268, retail: 4500, brand: 'Chanel', model: "Crossbody", img: 'gallery/268/10.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646731' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "30 Montaigne", img: 'gallery/298/01.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646775' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "Toujours Tote", img: 'gallery/298/02.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646726' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "CD Backpack", img: 'gallery/298/03.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646628' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "Lady Dior East-West", img: 'gallery/298/04.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646940' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "Lady Dior Moon", img: 'gallery/298/05.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646724' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "Lady Dior Classic", img: 'gallery/298/06.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646863' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "Lady Dior Lunchbox", img: 'gallery/298/07.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646747' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "New Tote", img: 'gallery/298/08.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646880' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "CD Messenger", img: 'gallery/298/09.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646645' },
+    { price: 298, retail: 3800, brand: 'Dior', model: "Saddle Bag", img: 'gallery/298/10.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646692' }
 ];
 
 // Featured gallery loader: 自动从多个 CDN 寻找最快的，加载 gallery/01.jpg .. gallery/40.jpg
