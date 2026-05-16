@@ -1564,28 +1564,66 @@ section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
 
 
 /* === Tame product image backgrounds (green/black tiles) === */
+/* All product photos now have cream #ECE4D5 background — match the card */
+.gallery-card { background: transparent !important; }
 .gallery-card .card-img {
-    background: #ffffff !important;
+    background: #ECE4D5 !important;
     padding: 0 !important;
     overflow: hidden !important;
+    border: none !important;
+    border-radius: 0 !important;
+    aspect-ratio: 1/1 !important;
     position: relative;
 }
 .gallery-card .card-img img {
-    width: 84% !important;
-    height: 84% !important;
-    margin: 8% !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
     padding: 0 !important;
     object-fit: contain !important;
-    background: #ffffff !important;
-    border-radius: 2px;
+    background: #ECE4D5 !important;
     transition: transform .5s ease;
 }
 .gallery-card:hover .card-img img { transform: scale(1.04); }
-/* Subtle inner shadow to fade colored edges */
-.gallery-card .card-img::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    box-shadow: inset 0 0 40px 8px rgba(255,255,255,0.5);
-    z-index: 1;
+.gallery-card:hover .card-img { box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important; }
+.gallery-card .card-img::after { display: none !important; content: none !important; }
+
+/* LV-Taiwan style card info: subtle gray brand, dark name, small price */
+.card-info {
+    padding: 14px 4px 0 !important;
+    text-align: left !important;
+    background: transparent !important;
+}
+.card-info .ci-brand {
+    color: #888 !important;
+    font-size: 11px !important;
+    letter-spacing: 1.5px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif !important;
+    margin-bottom: 6px !important;
+}
+.card-info .ci-model {
+    color: #1a1a1a !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    letter-spacing: 0 !important;
+    min-height: auto !important;
+    margin-bottom: 6px !important;
+}
+.card-info .ci-price {
+    color: #1a1a1a !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    letter-spacing: 0 !important;
+}
+.card-info .ci-retail {
+    color: #999 !important;
+    font-size: 11px !important;
+    text-decoration: line-through !important;
+    margin-left: 8px;
 }
 /* === END product tame === */
 </style>
