@@ -1626,6 +1626,98 @@ section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
     margin-left: 8px;
 }
 /* === END product tame === */
+
+/* === SKELETON LOADING === */
+.skeleton-card {
+    opacity: 1 !important;
+}
+.skeleton-card .card-img {
+    background: #e8e0d0 !important;
+    position: relative;
+    overflow: hidden;
+}
+.skeleton-card .card-img::after {
+    content: '' !important;
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    animation: shimmer 1.5s infinite;
+}
+.skeleton-card .card-info .ci-brand,
+.skeleton-card .card-info .ci-model,
+.skeleton-card .card-info .ci-price-row {
+    background: #ddd6c6;
+    border-radius: 4px;
+    color: transparent !important;
+    min-height: 14px;
+    position: relative;
+    overflow: hidden;
+}
+.skeleton-card .card-info .ci-model {
+    min-height: 20px;
+    width: 80%;
+}
+.skeleton-card .card-info .ci-price-row {
+    width: 50%;
+    min-height: 16px;
+}
+.skeleton-card .card-info .ci-brand::after,
+.skeleton-card .card-info .ci-model::after,
+.skeleton-card .card-info .ci-price-row::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    animation: shimmer 1.5s infinite;
+}
+.skeleton-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+.skeleton-header .sh-line {
+    flex: 0 1 140px;
+    height: 1px;
+    background: #ddd6c6;
+}
+.skeleton-header .sh-text {
+    text-align: center;
+}
+.skeleton-header .sh-title {
+    height: 26px;
+    width: 180px;
+    background: #ddd6c6;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+}
+.skeleton-header .sh-sub {
+    height: 12px;
+    width: 140px;
+    background: #e2dace;
+    border-radius: 4px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+.skeleton-header .sh-title::after,
+.skeleton-header .sh-sub::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+/* === END SKELETON LOADING === */
 </style>
 
     <link rel="preload" as="image" href="lifestyle/ch_hero1.jpg" fetchpriority="high">
@@ -2033,11 +2125,47 @@ function probeImage(url, timeoutMs = 8000) {
     if (empty) empty.remove();
     grid.innerHTML = '';
 
+    // Show skeleton loading placeholders
+    const SKELETON_TIERS = [
+        { brand: 'Loading...', sub: 'Please wait', count: 10 },
+        { brand: 'Loading...', sub: 'Please wait', count: 10 },
+        { brand: 'Loading...', sub: 'Please wait', count: 10 }
+    ];
+    SKELETON_TIERS.forEach(t => {
+        const sec = document.createElement('div');
+        sec.className = 'tier-section skeleton-tier';
+        sec.innerHTML = `
+          <div class="skeleton-header">
+            <div class="sh-line"></div>
+            <div class="sh-text"><div class="sh-title"></div><div class="sh-sub"></div></div>
+            <div class="sh-line"></div>
+          </div>
+          <div class="tier-grid"></div>`;
+        const tg = sec.querySelector('.tier-grid');
+        for (let i = 0; i < t.count; i++) {
+            const card = document.createElement('div');
+            card.className = 'gallery-card skeleton-card';
+            card.innerHTML = `
+              <div class="card-img"></div>
+              <div class="card-info">
+                <div class="ci-brand">&nbsp;</div>
+                <div class="ci-model">&nbsp;</div>
+                <div class="ci-price-row"><span class="ci-price">&nbsp;</span></div>
+              </div>`;
+            tg.appendChild(card);
+        }
+        grid.appendChild(sec);
+    });
+    console.log('[gallery] Skeleton loading shown');
+
     let activeCdn = './';
     for (const cdn of IMG_CDNS){
         if (await probeImage(`${cdn}ad/${BAG_CATALOG[0].img}`, 6000)){ activeCdn = cdn + 'ad/'; break }
     }
     console.log('[gallery] CDN:', activeCdn);
+
+    // Remove skeleton placeholders
+    grid.querySelectorAll('.skeleton-tier').forEach(el => el.remove());
 
     const TIERS = [
         { price: 198, num: 'I',   brand: 'Louis Vuitton', sub: 'Monogram Heritage · From £198' },
