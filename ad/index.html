@@ -1622,35 +1622,36 @@ footer .logo {
         margin-top: 12px !important;
     }
 
-    /* 优势卡片：2列紧凑排列 */
+    /* 优势卡片：4列一行 */
     .advantages {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 6px !important;
     }
     .advantage {
-        padding: 20px 14px !important;
+        padding: 12px 8px !important;
     }
     .advantage-icon {
-        width: 36px !important;
-        height: 36px !important;
-        border-radius: 10px !important;
-        margin-bottom: 12px !important;
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 8px !important;
+        margin-bottom: 8px !important;
     }
     .advantage-icon svg {
-        width: 18px !important;
-        height: 18px !important;
+        width: 14px !important;
+        height: 14px !important;
     }
     .advantage h3 {
-        font-size: 14px !important;
-        margin-bottom: 6px !important;
+        font-size: 10px !important;
+        margin-bottom: 4px !important;
     }
     .advantage .highlight {
-        font-size: 20px !important;
-        margin: 4px 0 !important;
+        font-size: 14px !important;
+        margin: 2px 0 !important;
     }
     .advantage p {
-        font-size: 11px !important;
-        line-height: 1.5 !important;
+        font-size: 8px !important;
+        line-height: 1.4 !important;
+        display: none !important;
     }
 
     /* Section标题缩小 */
@@ -1673,62 +1674,75 @@ footer .logo {
     /* Lightbox：修复按钮显示 */
     .lightbox-inner {
         flex-direction: column !important;
-        gap: 12px !important;
+        gap: 0 !important;
         overflow-y: auto !important;
-        max-height: 95vh !important;
-        padding: 10px !important;
+        max-height: 100vh !important;
+        padding: 8px !important;
+        padding-top: 50px !important;
     }
     .lightbox-img-wrap {
         max-width: 90vw !important;
-        max-height: 35vh !important;
+        max-height: 28vh !important;
         flex-shrink: 0 !important;
     }
     .lightbox-img-wrap img {
-        max-height: 35vh !important;
+        max-height: 28vh !important;
     }
     .lightbox-info {
         flex: 0 0 auto !important;
         width: 100% !important;
-        padding: 16px !important;
+        padding: 14px !important;
         max-height: none !important;
     }
     .lb-model {
-        font-size: 20px !important;
-        margin-bottom: 10px !important;
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
     }
     .lb-price {
-        font-size: 28px !important;
+        font-size: 24px !important;
     }
     .lb-retail {
-        font-size: 14px !important;
+        font-size: 13px !important;
+    }
+    .lb-save {
+        font-size: 10px !important;
+        padding: 3px 10px !important;
+        margin-bottom: 10px !important;
     }
     .lb-desc {
-        font-size: 12px !important;
-        margin-bottom: 14px !important;
-        padding-bottom: 14px !important;
+        font-size: 11px !important;
+        margin-bottom: 10px !important;
+        padding-bottom: 10px !important;
+        line-height: 1.5 !important;
     }
     .lb-features {
-        margin-bottom: 16px !important;
-        font-size: 12px !important;
+        margin-bottom: 12px !important;
+        font-size: 11px !important;
     }
     .lb-features li {
-        padding: 4px 0 !important;
+        padding: 2px 0 !important;
     }
     .lb-cta {
         padding: 14px 20px !important;
-        font-size: 12px !important;
+        font-size: 13px !important;
         letter-spacing: 2px !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 2px solid #ffffff !important;
+        display: block !important;
+        text-align: center !important;
     }
     .lb-secondary {
         padding: 8px !important;
         font-size: 11px !important;
     }
     .lightbox-close {
-        top: 10px !important;
-        right: 10px !important;
+        top: 8px !important;
+        right: 8px !important;
         width: 36px !important;
         height: 36px !important;
         font-size: 20px !important;
+        z-index: 100 !important;
     }
 
     /* Editorial模块缩小 */
@@ -1751,27 +1765,50 @@ footer .logo {
         font-size: 10px !important;
     }
 
-    /* 趋势卡片紧凑 */
+    /* 趋势卡片：3列2行 */
     .trends {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
     }
     .trend {
-        padding: 16px 12px !important;
+        padding: 12px 8px !important;
     }
     .trend-num {
-        font-size: 28px !important;
+        font-size: 22px !important;
     }
     .trend h3 {
-        font-size: 13px !important;
-        margin: 6px 0 4px !important;
+        font-size: 11px !important;
+        margin: 4px 0 3px !important;
     }
     .trend p {
-        font-size: 11px !important;
-        line-height: 1.5 !important;
+        font-size: 8px !important;
+        line-height: 1.4 !important;
     }
     .trends-bg {
-        padding: 50px 16px !important;
+        padding: 40px 12px !important;
+    }
+
+    /* 步骤：4列一行 */
+    .steps {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 6px !important;
+    }
+    .step {
+        padding: 10px 4px !important;
+    }
+    .step-num {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+    }
+    .step h3 {
+        font-size: 10px !important;
+        margin-bottom: 4px !important;
+    }
+    .step p {
+        font-size: 8px !important;
+        line-height: 1.3 !important;
     }
 
     /* Hero紧凑 */
