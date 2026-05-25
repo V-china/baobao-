@@ -1552,6 +1552,254 @@ footer .logo {
     color: var(--c-black) !important;
 }
 
+/* === MOBILE OPTIMIZATION (Chanel theme) === */
+@media (max-width: 768px) {
+    /* 产品卡片：强制2列，覆盖Chanel主题的!important */
+    .tier-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px 10px !important;
+    }
+    .gallery-card img {
+        padding: 10px !important;
+    }
+    .card-info {
+        padding: 10px 0 0 !important;
+    }
+    .card-info .ci-brand {
+        font-size: 9px !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 4px !important;
+    }
+    .card-info .ci-model {
+        font-size: 13px !important;
+        min-height: 36px !important;
+        margin-bottom: 4px !important;
+    }
+    .card-info .ci-price {
+        font-size: 15px !important;
+    }
+    .card-info .ci-retail {
+        font-size: 10px !important;
+    }
+    .tier-section {
+        margin-bottom: 50px !important;
+    }
+    .tier-section-header {
+        margin-bottom: 28px !important;
+    }
+
+    /* 价格对比：缩小占用空间 */
+    .compare-bg {
+        padding: 50px 20px !important;
+    }
+    .compare-card {
+        padding: 24px 16px !important;
+    }
+    .compare-price {
+        font-size: 36px !important;
+    }
+    .compare-label {
+        font-size: 11px !important;
+        margin-bottom: 8px !important;
+    }
+    .compare-model {
+        font-size: 12px !important;
+        margin-top: 8px !important;
+    }
+    .vs {
+        font-size: 28px !important;
+        padding: 8px 0 !important;
+    }
+    .save-amount {
+        font-size: 16px !important;
+        margin-top: 16px !important;
+    }
+
+    /* 优势卡片：2列紧凑排列 */
+    .advantages {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    .advantage {
+        padding: 20px 14px !important;
+    }
+    .advantage-icon {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+    }
+    .advantage-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    .advantage h3 {
+        font-size: 14px !important;
+        margin-bottom: 6px !important;
+    }
+    .advantage .highlight {
+        font-size: 20px !important;
+        margin: 4px 0 !important;
+    }
+    .advantage p {
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Section标题缩小 */
+    .section-title {
+        font-size: 28px !important;
+    }
+    .section-subtitle {
+        font-size: 14px !important;
+        margin-bottom: 40px !important;
+    }
+    .section-label {
+        font-size: 10px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 10px !important;
+    }
+    .section {
+        padding: 50px 16px !important;
+    }
+
+    /* Lightbox：修复按钮显示 */
+    .lightbox-inner {
+        flex-direction: column !important;
+        gap: 12px !important;
+        overflow-y: auto !important;
+        max-height: 95vh !important;
+        padding: 10px !important;
+    }
+    .lightbox-img-wrap {
+        max-width: 90vw !important;
+        max-height: 35vh !important;
+        flex-shrink: 0 !important;
+    }
+    .lightbox-img-wrap img {
+        max-height: 35vh !important;
+    }
+    .lightbox-info {
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        padding: 16px !important;
+        max-height: none !important;
+    }
+    .lb-model {
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+    }
+    .lb-price {
+        font-size: 28px !important;
+    }
+    .lb-retail {
+        font-size: 14px !important;
+    }
+    .lb-desc {
+        font-size: 12px !important;
+        margin-bottom: 14px !important;
+        padding-bottom: 14px !important;
+    }
+    .lb-features {
+        margin-bottom: 16px !important;
+        font-size: 12px !important;
+    }
+    .lb-features li {
+        padding: 4px 0 !important;
+    }
+    .lb-cta {
+        padding: 14px 20px !important;
+        font-size: 12px !important;
+        letter-spacing: 2px !important;
+    }
+    .lb-secondary {
+        padding: 8px !important;
+        font-size: 11px !important;
+    }
+    .lightbox-close {
+        top: 10px !important;
+        right: 10px !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 20px !important;
+    }
+
+    /* Editorial模块缩小 */
+    .chanel-editorial .ce-img {
+        min-height: 40vh !important;
+    }
+    .chanel-editorial .ce-text {
+        padding: 36px 20px !important;
+    }
+    .chanel-editorial .ce-title {
+        font-size: 28px !important;
+        margin-bottom: 16px !important;
+    }
+    .chanel-editorial .ce-body {
+        font-size: 13px !important;
+        margin-bottom: 24px !important;
+    }
+    .chanel-editorial .ce-link {
+        padding: 12px 24px !important;
+        font-size: 10px !important;
+    }
+
+    /* 趋势卡片紧凑 */
+    .trends {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .trend {
+        padding: 16px 12px !important;
+    }
+    .trend-num {
+        font-size: 28px !important;
+    }
+    .trend h3 {
+        font-size: 13px !important;
+        margin: 6px 0 4px !important;
+    }
+    .trend p {
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+    }
+    .trends-bg {
+        padding: 50px 16px !important;
+    }
+
+    /* Hero紧凑 */
+    .hero {
+        min-height: auto !important;
+        padding: 80px 16px 40px !important;
+    }
+    .hero h1 {
+        font-size: 32px !important;
+    }
+    .hero-sub {
+        font-size: 14px !important;
+        margin-bottom: 30px !important;
+    }
+    .trust-bar {
+        margin-top: 30px !important;
+    }
+    .trust-item {
+        font-size: 12px !important;
+    }
+
+    /* Final CTA紧凑 */
+    .final-cta {
+        padding: 50px 16px !important;
+    }
+    .final-cta h2 {
+        font-size: 28px !important;
+    }
+    .final-cta p {
+        font-size: 14px !important;
+        margin-bottom: 30px !important;
+    }
+}
+/* === END MOBILE OPTIMIZATION === */
+
 /* === END CHANEL THEME === */
 
 
