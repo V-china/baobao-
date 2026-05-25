@@ -1917,6 +1917,33 @@ section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
     text-decoration: line-through !important;
     margin-left: 8px;
 }
+/* card shop button */
+.card-shop-btn {
+    display: block;
+    margin-top: 8px;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+}
+.card-shop-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+@media (max-width: 768px) {
+    .card-shop-btn {
+        padding: 5px 0;
+        font-size: 8px;
+        letter-spacing: 1px;
+        margin-top: 4px;
+    }
+}
 /* === END product tame === */
 
 /* === SKELETON LOADING === */
@@ -2360,10 +2387,10 @@ const MY_ACCOUNTS = {
 const CLIENT_SHOP_URL = MY_ACCOUNTS.shop;
 // 多 CDN 容灾：依次尝试，哪个通用哪个（国内访问更稳）
 const IMG_CDNS = [
+    './',  // 同源 GitHub Pages 最快
     'https://cdn.statically.io/gh/V-china/baobao-/main/ad/',
     'https://gcore.jsdelivr.net/gh/V-china/baobao-@main/ad/',
-    'https://cdn.jsdelivr.net/gh/V-china/baobao-@main/ad/',
-    './'  // 最后退回相对路径（同源 GitHub Pages）
+    'https://cdn.jsdelivr.net/gh/V-china/baobao-@main/ad/'
 ];
 const BAG_CATALOG = [
     { price: 198, retail: 1500, brand: 'Louis Vuitton', model: "Alma BB Bucket", img: 'gallery/198/01.jpg', shopUrl: 'https://a202004261251495200361080.wgstores.com/weshop/goods_list/_dLMqfLn9A_bNpTTHmqnMky7RuyiRPN3Ce3NHB0A?tagId=98646920' },
@@ -2450,10 +2477,18 @@ function probeImage(url, timeoutMs = 8000) {
     });
     console.log('[gallery] Skeleton loading shown');
 
+    // 并行竞速探测所有 CDN，谁先通用谁
     let activeCdn = './';
-    for (const cdn of IMG_CDNS){
-        if (await probeImage(`${cdn}ad/${BAG_CATALOG[0].img}`, 6000)){ activeCdn = cdn + 'ad/'; break }
-    }
+    try {
+        const raceResult = await Promise.any(
+            IMG_CDNS.map(cdn => {
+                const prefix = cdn === './' ? cdn : cdn + 'ad/';
+                return probeImage(`${prefix}${BAG_CATALOG[0].img}`, 4000)
+                    .then(ok => { if (ok) return prefix; throw 'fail'; });
+            })
+        );
+        activeCdn = raceResult;
+    } catch(e) { activeCdn = './'; }
     console.log('[gallery] CDN:', activeCdn);
 
     // Remove skeleton placeholders
@@ -2486,6 +2521,7 @@ function probeImage(url, timeoutMs = 8000) {
             card.className = 'gallery-card';
             card.style.opacity = '0.3';
             const retailFmt = (item.retail || 0).toLocaleString();
+            const shopLink = item.shopUrl || CLIENT_SHOP_URL;
             card.innerHTML = `
               <div class="card-img">
                 <img src="${url}" alt="${item.brand} ${item.model}" onload="this.closest('.gallery-card').style.opacity='1'" loading="lazy" decoding="async">
@@ -2497,6 +2533,7 @@ function probeImage(url, timeoutMs = 8000) {
                   <span class="ci-price">£${item.price}</span>
                   <span class="ci-retail">£${retailFmt}</span>
                 </div>
+                <a class="card-shop-btn" href="${shopLink}" target="_blank" onclick="event.stopPropagation()">Shop Now →</a>
               </div>`;
             card.addEventListener('click', () => openLightbox(it));
             tg.appendChild(card);
