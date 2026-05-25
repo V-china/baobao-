@@ -1554,10 +1554,10 @@ footer .logo {
 
 /* === MOBILE OPTIMIZATION (Chanel theme) === */
 @media (max-width: 768px) {
-    /* 产品卡片：强制2列，覆盖Chanel主题的!important */
+    /* 产品卡片：3列紧凑排列 */
     .tier-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 16px 10px !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px 8px !important;
     }
     .gallery-card img {
         padding: 10px !important;
@@ -1566,20 +1566,20 @@ footer .logo {
         padding: 10px 0 0 !important;
     }
     .card-info .ci-brand {
-        font-size: 9px !important;
-        letter-spacing: 2px !important;
-        margin-bottom: 4px !important;
+        font-size: 7px !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 2px !important;
     }
     .card-info .ci-model {
-        font-size: 13px !important;
-        min-height: 36px !important;
-        margin-bottom: 4px !important;
+        font-size: 11px !important;
+        min-height: 28px !important;
+        margin-bottom: 2px !important;
     }
     .card-info .ci-price {
-        font-size: 15px !important;
+        font-size: 12px !important;
     }
     .card-info .ci-retail {
-        font-size: 10px !important;
+        font-size: 9px !important;
     }
     .tier-section {
         margin-bottom: 50px !important;
@@ -1588,31 +1588,38 @@ footer .logo {
         margin-bottom: 28px !important;
     }
 
-    /* 价格对比：缩小占用空间 */
+    /* 价格对比：横排一行 */
     .compare-bg {
-        padding: 50px 20px !important;
+        padding: 40px 12px !important;
+    }
+    .compare-cards {
+        grid-template-columns: 1fr auto 1fr !important;
+        gap: 8px !important;
+        margin-top: 30px !important;
     }
     .compare-card {
-        padding: 24px 16px !important;
+        padding: 14px 10px !important;
     }
     .compare-price {
-        font-size: 36px !important;
+        font-size: 22px !important;
     }
     .compare-label {
-        font-size: 11px !important;
-        margin-bottom: 8px !important;
+        font-size: 8px !important;
+        margin-bottom: 4px !important;
+        letter-spacing: 1px !important;
     }
     .compare-model {
-        font-size: 12px !important;
-        margin-top: 8px !important;
+        font-size: 9px !important;
+        margin-top: 6px !important;
     }
     .vs {
-        font-size: 28px !important;
-        padding: 8px 0 !important;
+        font-size: 18px !important;
+        padding: 0 !important;
+        transform: none !important;
     }
     .save-amount {
-        font-size: 16px !important;
-        margin-top: 16px !important;
+        font-size: 13px !important;
+        margin-top: 12px !important;
     }
 
     /* 优势卡片：2列紧凑排列 */
