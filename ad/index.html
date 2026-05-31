@@ -1954,6 +1954,11 @@ section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
 }
 /* === END product tame === */
 
+/* Private Pricing Override */
+.lb-price-row, .lb-save {
+    display: none !important;
+}
+
 /* === SKELETON LOADING === */
 .skeleton-card {
     opacity: 1 !important;
@@ -2126,8 +2131,8 @@ section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8l-4 8-4-4"/></svg>
             </div>
             <h3>Up to 90% Off Retail</h3>
-            <span class="highlight">£690+</span>
-            <p>Same craftsmanship, a fraction of the boutique price. A £8,800 Chanel Flap for £690.</p>
+            <span class="highlight">Boutique Quality</span>
+            <p>Same master craftsmanship, but at a tiny fraction of the original boutique price. Handcrafted luxury, accessible.</p>
         </div>
         <div class="advantage">
             <div class="advantage-icon">
@@ -2160,13 +2165,13 @@ section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
                 <div class="compare-model">Chanel Classic Flap · Medium</div>
             </div>
             <div class="vs">vs</div>
-            <div class="compare-card ours">
-                <div class="compare-label">Our Price</div>
-                <div class="compare-price">£690</div>
-                <div class="compare-model">Same Style · Same Craftsmanship</div>
+            <div class="compare-card ours" onclick="document.getElementById('whatsapp-link').click()" style="cursor:pointer;">
+                <div class="compare-label">Our Premium Custom</div>
+                <div class="compare-price" style="font-size: clamp(24px, 4vw, 36px); letter-spacing: 1px; color:#d4af37 !important;">Get Quote 💬</div>
+                <div class="compare-model">Same Style · Handcrafted Quality</div>
             </div>
         </div>
-        <div class="save-amount">You save <strong style="color:#fff">£8,110</strong> · 92% off</div>
+        <div class="save-amount">Save up to <strong style="color:#fff">92% Off</strong> Boutique Retail</div>
     </div>
 </section>
 
@@ -2503,9 +2508,9 @@ function probeImage(url, timeoutMs = 8000) {
     grid.querySelectorAll('.skeleton-tier').forEach(el => el.remove());
 
     const TIERS = [
-        { price: 198, num: 'I',   brand: 'Louis Vuitton', sub: 'Monogram Heritage · From £198' },
-        { price: 268, num: 'II',  brand: 'Chanel',        sub: 'Iconic Black · From £268' },
-        { price: 298, num: 'III', brand: 'Dior',          sub: 'Maison Selection · From £298' }
+        { price: 198, num: 'I',   brand: 'Louis Vuitton', sub: 'Monogram Heritage · UK Stock' },
+        { price: 268, num: 'II',  brand: 'Chanel',        sub: 'Iconic Classics · Best Sellers' },
+        { price: 298, num: 'III', brand: 'Dior',          sub: 'Maison Selection · Master Craft' }
     ];
     TIERS.forEach(t => {
         const items = BAG_CATALOG.filter(b => b.price === t.price);
@@ -2528,8 +2533,8 @@ function probeImage(url, timeoutMs = 8000) {
             const card = document.createElement('div');
             card.className = 'gallery-card';
             card.style.opacity = '0.3';
-            const retailFmt = (item.retail || 0).toLocaleString();
-            const shopLink = item.shopUrl || CLIENT_SHOP_URL;
+            const cleanModel = `${item.brand} ${item.model}`;
+            const waLink = `https://wa.me/8613926016517?text=Hi! I am interested in the ${encodeURIComponent(cleanModel)} on Luxe&Co. Is it in stock and can I check the price?`;
             card.innerHTML = `
               <div class="card-img">
                 <img src="${url}" alt="${item.brand} ${item.model}" onload="this.closest('.gallery-card').style.opacity='1'" loading="lazy" decoding="async">
@@ -2538,10 +2543,9 @@ function probeImage(url, timeoutMs = 8000) {
                 <div class="ci-brand">${item.brand}</div>
                 <div class="ci-model">${item.model}</div>
                 <div class="ci-price-row">
-                  <span class="ci-price">£${item.price}</span>
-                  <span class="ci-retail">£${retailFmt}</span>
+                  <span class="ci-price" style="color:#d4af37 !important; font-size:11px; letter-spacing:1px; font-weight:500;">UK LOCAL STOCK</span>
                 </div>
-                <a class="card-shop-btn" href="${shopLink}" target="_blank" onclick="event.stopPropagation()">Shop Now →</a>
+                <a class="card-shop-btn" href="${waLink}" target="_blank" onclick="event.stopPropagation()">Inquire Price →</a>
               </div>`;
             card.addEventListener('click', () => openLightbox(it));
             tg.appendChild(card);
@@ -2558,11 +2562,10 @@ function openLightbox(item) {
     lightboxImg.src = item.url;
     document.getElementById('lbBrand').textContent = item.brand;
     document.getElementById('lbModel').textContent = item.model;
-    document.getElementById('lbPrice').textContent = '£' + item.price;
-    document.getElementById('lbRetail').textContent = '£' + item.retail.toLocaleString();
-    const pct = Math.round((1 - item.price / item.retail) * 100);
-    document.getElementById('lbSave').textContent = `YOU SAVE ${pct}% · £${(item.retail - item.price).toLocaleString()}`;
-    document.getElementById('lbCta').href = item.shopUrl || CLIENT_SHOP_URL;
+    const cleanModel = `${item.brand} ${item.model}`;
+    const waInquiry = `https://wa.me/8613926016517?text=Hi! I am interested in the ${encodeURIComponent(cleanModel)} on Luxe&Co. Can I check UK stock and get a 4K real-life inspection video?`;
+    document.getElementById('lbCta').href = waInquiry;
+    document.getElementById('lbCta').textContent = `Inquire via WhatsApp 💬`;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
